@@ -11,7 +11,7 @@ node n3 {
 	interface eth0
 	 ip address 10.10.10.1/24
 	 ipv6 address 2404:2000:2002:110::1/64
-
+	
 	!
 	interface eth3
 	 ip address 10.10.1.1/24
@@ -23,8 +23,8 @@ node n3 {
 	!
     }
     canvas c1
-    iconcoords {455.0 164.0}
-    labelcoords {455.0 196.0}
+    iconcoords {599.0 162.0}
+    labelcoords {599.0 194.0}
     interface-peer {eth2 n4}
     interface-peer {eth3 n5}
     services {zebra IPForward}
@@ -56,8 +56,8 @@ node n4 {
 	!
     }
     canvas c1
-    iconcoords {601.0 260.0}
-    labelcoords {601.0 292.0}
+    iconcoords {745.0 258.0}
+    labelcoords {745.0 290.0}
     interface-peer {eth0 n3}
     interface-peer {eth1 n6}
     interface-peer {eth2 n5}
@@ -85,8 +85,8 @@ node n5 {
 	!
     }
     canvas c1
-    iconcoords {313.0 259.0}
-    labelcoords {313.0 291.0}
+    iconcoords {457.0 257.0}
+    labelcoords {457.0 289.0}
     interface-peer {eth0 n3}
     interface-peer {eth1 n7}
     interface-peer {eth2 n4}
@@ -128,8 +128,8 @@ node n6 {
 	!
     }
     canvas c1
-    iconcoords {456.0 334.0}
-    labelcoords {456.0 366.0}
+    iconcoords {600.0 332.0}
+    labelcoords {600.0 364.0}
     interface-peer {eth0 n4}
     interface-peer {eth1 n7}
     services {zebra IPForward}
@@ -159,8 +159,8 @@ node n7 {
 	!
     }
     canvas c1
-    iconcoords {312.0 406.0}
-    labelcoords {312.0 438.0}
+    iconcoords {456.0 404.0}
+    labelcoords {456.0 436.0}
     interface-peer {eth0 n5}
     interface-peer {eth1 n6}
     interface-peer {eth2 n8}
@@ -177,7 +177,7 @@ node n8 {
 	interface eth2
 	 ip address 10.10.13.1/24
 	 ipv6 address 2404:2000:2002:113::1/64
-
+	
 	!
 	interface eth1
 	 ip address 10.10.12.1/24
@@ -193,8 +193,8 @@ node n8 {
 	!
     }
     canvas c1
-    iconcoords {602.0 405.0}
-    labelcoords {602.0 437.0}
+    iconcoords {746.0 403.0}
+    labelcoords {746.0 435.0}
     interface-peer {eth0 n7}
     interface-peer {eth3 n4}
     services {zebra IPForward}
@@ -208,16 +208,21 @@ node n9 {
     network-config {
 	hostname R7
 	!
+	interface eth1
+	 ipv6 address 2001:0::1/64
+	 ip address 192.168.1.1/24
+	!
 	interface eth0
 	 ip address 10.10.6.1/24
 	 ipv6 address 2404:2000:2002:106::1/64
 	!
     }
     canvas c1
-    iconcoords {165.0 483.0}
-    labelcoords {165.0 515.0}
+    iconcoords {309.0 481.0}
+    labelcoords {309.0 513.0}
     interface-peer {eth0 n7}
     services {zebra IPForward}
+    interface-peer {eth1 n12}
 }
 
 node n1 {
@@ -232,8 +237,8 @@ node n1 {
 	!
     }
     canvas c1
-    iconcoords {312.6666666666667 71.33333333333333}
-    labelcoords {312.6666666666667 103.33333333333333}
+    iconcoords {456.6666666666667 69.33333333333333}
+    labelcoords {456.6666666666667 101.33333333333333}
     interface-peer {eth0 n3}
     services {DefaultRoute}
 }
@@ -250,8 +255,8 @@ node n2 {
 	!
     }
     canvas c1
-    iconcoords {602.6666666666666 72.0}
-    labelcoords {602.6666666666666 104.0}
+    iconcoords {746.6666666666666 70.0}
+    labelcoords {746.6666666666666 102.0}
     interface-peer {eth0 n3}
     services {DefaultRoute}
 }
@@ -268,8 +273,8 @@ node n10 {
 	!
     }
     canvas c1
-    iconcoords {456.0 505.33333333333326}
-    labelcoords {456.0 537.3333333333334}
+    iconcoords {600.0 503.33333333333326}
+    labelcoords {600.0 535.3333333333334}
     interface-peer {eth0 n8}
 }
 
@@ -285,9 +290,26 @@ node n11 {
 	!
     }
     canvas c1
-    iconcoords {745.0 504.0}
-    labelcoords {745.0 536.0}
+    iconcoords {889.0 502.0}
+    labelcoords {889.0 534.0}
     interface-peer {eth0 n8}
+}
+
+node n12 {
+    type router
+    model PC
+    network-config {
+	hostname m5
+	!
+	interface eth0
+	 ipv6 address 2001:0::20/64
+	 ip address 192.168.1.10
+	!
+    }
+    canvas c1
+    iconcoords {172.0 553.0}
+    labelcoords {172.0 585.0}
+    interface-peer {eth0 n9}
 }
 
 link l3 {
@@ -352,6 +374,11 @@ link l11 {
 
 link l12 {
     nodes {n8 n11}
+    bandwidth 0
+}
+
+link l14 {
+    nodes {n9 n12}
     bandwidth 0
 }
 
